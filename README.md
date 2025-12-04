@@ -97,14 +97,16 @@ Chat
         
         router = ModelRouter()
 
-        query = "Explain in detail how these 20 pages of architecture docs affect our deployment pipeline."
-        handle = router.select_model(text="What is the llm model router")
-        response = handle.chat([{"role": "user", "content": "Explain vector embeddings"}])
+        # Simple user query
+        query = "What is the llm model router ?"
+        handle = router.select_model(text=query)
+        response = handle.chat([{"role": "user", "content": query}])
         print(response)
 
-        query = "Explain in detail how these 20 pages of architecture docs affect our deployment pipeline."
-        handle = router.select_model(text="Explain vector embeddings in simple terms.")
-        response = handle.chat([{"role": "user", "content": "Explain vector embeddings"}])
+        # Complex user query
+        query = "Explain in detail of software architecture design in 20 pages"
+        handle = router.select_model(text=query, task_type="chat")
+        response = handle.chat([{"role": "user", "content": query}])
         print(response)
 
 
@@ -113,10 +115,10 @@ Embedding
         from model_router_framework import ModelRouter
         
         router = ModelRouter()
-        chunk = "Serverless architecture enables..."
+        chunk = "Explain in detail of software architecture design in 20 pages"
         handle = router.select_model(text=chunk, task_type="embedding")
-        embedding = handle.embed(chunk)
-        print(embedding)
+        response = handle.embed(chunk)
+        print(response)
 
 
 🥇 **Status**
