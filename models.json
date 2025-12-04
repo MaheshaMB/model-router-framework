@@ -1,0 +1,86 @@
+{
+  "models": [
+    {
+      "id": "bedrock_nova_pro",
+      "provider": "bedrock",
+      "type": "chat",
+      "model_id": "eu.amazon.nova-pro-v1:0",
+      "max_context_tokens": 300000,
+      "languages": ["en", "multi"],
+      "strengths": ["long_context", "rag"],
+      "cost_tier": "medium",
+      "default_params": {
+        "temperature": 0.2,
+        "top_p": 0.8,
+        "max_tokens": 4096
+      },
+      "backup_model_id": "claude_sonnet_4_5",
+      "retry_policy": {
+        "max_attempts": 2,
+        "backoff_ms": 200
+      }
+    },
+    {
+      "id": "claude_sonnet_4_5",
+      "provider": "bedrock",
+      "type": "chat",
+      "model_id": "eu.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "max_context_tokens": 200000,
+      "languages": ["en", "multi"],
+      "strengths": ["complex_reasoning", "analysis", "code"],
+      "cost_tier": "high",
+      "default_params": {
+        "temperature": 0.3,
+        "top_p": 0.9,
+        "max_tokens": 4096
+      },
+      "backup_model_id": "bedrock_nova_pro",
+      "retry_policy": {
+        "max_attempts": 2,
+        "backoff_ms": 200
+      }
+    },
+    {
+      "id": "bedrock_titan_embed_small",
+      "provider": "bedrock",
+      "type": "embedding",
+      "model_id": "amazon.titan-embed-text-v2:0",
+      "max_chunk_tokens": 2048,
+      "languages": ["en"],
+      "cost_tier": "low",
+      "default_params": {}
+    },
+    {
+      "id": "bedrock_cohere_embed_english",
+      "provider": "bedrock",
+      "type": "embedding",
+      "model_id": "cohere.embed-english-v3",
+      "max_chunk_tokens": 8192,
+      "languages": ["en"],
+      "cost_tier": "medium",
+      "default_params": {
+        "truncate": "RIGHT"
+      },
+      "backup_model_id": "bedrock_titan_embed_small",
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff_ms": 150
+      }
+    },
+    {
+      "id": "bedrock_cohere_embed_multilingual",
+      "provider": "bedrock",
+      "type": "embedding",
+      "model_id": "cohere.embed-multilingual-v3",
+      "max_chunk_tokens": 8192,
+      "languages": ["multi"],
+      "cost_tier": "medium",
+      "default_params": {},
+      "backup_model_id": "bedrock_titan_embed_small",
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff_ms": 150
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "rules": [
+    {
+      "id": "complex_large_context_chat",
+      "when": {
+        "task_type": "chat",
+        "complexity": "high",
+        "context_tokens": { "gte": 8000 },
+        "tenant_tier": ["standard", "premium", "internal"]
+      },
+      "use_model": "bedrock_nova_pro",
+      "override_params": {
+        "temperature": 0.2,
+        "top_p": 0.8
+      }
+    },
+    {
+      "id": "complex_small_context_chat",
+      "when": {
+        "task_type": "chat",
+        "complexity": "high",
+        "context_tokens": { "lt": 8000 }
+      },
+      "use_model": "claude_sonnet_4_5",
+      "override_params": {
+        "temperature": 0.3,
+        "top_p": 0.9
+      }
+    },
+    {
+      "id": "embedding_large_english",
+      "when": {
+        "task_type": "embedding",
+        "chunk_tokens": { "gte": 2048 },
+        "language": "en"
+      },
+      "use_model": "bedrock_cohere_embed_english"
+    },
+    {
+      "id": "embedding_small_english",
+      "when": {
+        "task_type": "embedding",
+        "chunk_tokens": { "lt": 2048 },
+        "language": "en"
+      },
+      "use_model": "bedrock_titan_embed_small"
+    },
+    {
+      "id": "embedding_multilingual",
+      "when": {
+        "task_type": "embedding",
+        "language": "multi"
+      },
+      "use_model": "bedrock_cohere_embed_multilingual"
+    }
+  ],
+  "defaults": {
+    "chat": "bedrock_nova_pro",
+    "embedding": "bedrock_titan_embed_small"
+  }
+}
