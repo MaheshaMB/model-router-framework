@@ -96,9 +96,17 @@ Chat
         from model_router_framework import ModelRouter
         
         router = ModelRouter()
+
+        query = "Explain in detail how these 20 pages of architecture docs affect our deployment pipeline."
+        handle = router.select_model(text="What is the llm model router")
+        response = handle.chat([{"role": "user", "content": "Explain vector embeddings"}])
+        print(response)
+
+        query = "Explain in detail how these 20 pages of architecture docs affect our deployment pipeline."
         handle = router.select_model(text="Explain vector embeddings in simple terms.")
         response = handle.chat([{"role": "user", "content": "Explain vector embeddings"}])
         print(response)
+
 
 Embedding
 
@@ -115,7 +123,7 @@ Embedding
 
 * This is currently a POC implementation, and it can be evolved into an MVP and further to a production-ready solution by applying the necessary configuration enhancements and environment-specific adjustments.
 
-* This solution is designed specifically for your application’s LLM call workflow, including both standard RAG and Agentic RAG flows. 
+* This solution is designed specifically for your application’s LLM call workflow, including RAG and Agentic AI flows. 
 
 * It can be packaged as a reusable library and integrated directly into your application wherever LLM initialization and call execution are performed.
   
