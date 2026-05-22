@@ -61,3 +61,8 @@ variable "pipeline_token" {
   type = string
   default = ""
 }
+variable "s3_bucket_name" {
+  description = "s3 bucket name"
+  type = string
+  default = "backend"
+}
