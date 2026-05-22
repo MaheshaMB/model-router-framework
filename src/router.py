@@ -59,6 +59,8 @@ class ModelRouter:
 
     # ---------- Internal: selection ----------
 
+    #---------------------------
+
     def _select_model_for_features(self, features: FeatureSummary) -> ModelSelection:
         # Try rules
         for rule in self._config.rules:
