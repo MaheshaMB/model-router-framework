@@ -6,4 +6,4 @@ customer_name   = "development"
 revenue_type    = "non-rev"
 requestor_name  = "mahesha"
 
-s3_bucket_name = "demo-bucket-1"
+s3_bucket_name = "demo-bucket"
