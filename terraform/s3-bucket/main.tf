@@ -45,7 +45,7 @@ data "aws_caller_identity" "current" {}
 # aws s3 bucket : This is for deploy static web page 
 ########################################################################
 resource "aws_s3_bucket" "backend_bucket" {
-  bucket = "${var.stack_name}-${data.aws_caller_identity.current.account_id}-${var.product}-backend"
+  bucket = "${var.stack_name}-${data.aws_caller_identity.current.account_id}-${var.product}-${var.s3_bucket_name}"
 
   lifecycle {
     prevent_destroy = true
