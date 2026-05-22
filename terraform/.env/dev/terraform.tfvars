@@ -5,3 +5,5 @@ product_version = "1.0.0"
 customer_name   = "development"
 revenue_type    = "non-rev"
 requestor_name  = "mahesha"
+
+s3_bucket_name = "demo-bucket"
